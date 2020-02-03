@@ -1,0 +1,172 @@
+
+body {
+    font-family: "Gloria Hallelujah";
+    border: 16px solid black;
+    padding: 10px;
+    margin: 0;
+}
+
+#body {
+    background-image: url("../images/yin-yang.jpg");
+    height: 900px;
+    padding-top: 6vw;
+    display: flex;
+    justify-content: space-around;
+}
+
+h1 {
+    text-align: center;
+    color: #112d4e;
+    margin-bottom: 5em;
+    background-color: #dbe2ef;
+    font-size: 2em;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    /* background-color: rgba(0, 0, 0, 0.3); */
+}
+
+#sidenav {
+    height: 100%;
+    z-index: 1;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: #3f72af;
+}
+
+.label {
+    position: absolute;
+    top: 0;
+    left: 0.5vw;
+    font-size: 0.8em;
+}
+
+#grid, #grid2 {
+    display: grid;
+    /* border: 5px solid black; */
+    box-sizing: border-box;
+    background-color: rgba(0, 0, 0, 0.5);
+    border: 2.5px solid black;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.3), 
+
+}
+
+#grid div, #grid2 div{
+    position: relative;
+    padding-top: 1.5vw;
+    padding-bottom: 1.5vw;
+    border: 5px solid black;
+    text-align: center;
+    cursor: pointer;
+    background-color: #fff;
+    font-size: 2vw;
+    /* outline-bottom: 5px solid black; */
+    box-sizing: border-box;
+    /* border: 1px solid black; */
+}
+
+#grid div:hover {
+    background-color: #3f72af;
+}
+
+#grid2 div:hover {
+    background-color: #3f72af;
+}
+
+#game {
+    width: 25%;
+    height: 42%;
+    /* margin: 0 auto; */
+    position: relative;
+    border: 15px solid #C7A663;
+    border-radius: 10px;
+}
+
+#game2 {
+    width: 25%;
+    height: 42%;
+    /* margin: 0 auto; */
+    position: relative;
+    border: 15px solid #F7DD9B;
+    border-radius: 10px;
+}
+
+#grid .zero {
+    background-color: transparent;
+    color: white;
+}
+
+#grid .zero:hover {
+    background-color: transparent;
+    cursor: default;
+}
+
+#grid2 .zero:hover {
+    background-color: transparent;
+    cursor: default;
+}
+
+#grid2 .zero {
+    background-color: transparent;
+    color: white;
+}
+
+
+/* .border {
+    max-width: 150%;
+    max-height: 185%;
+    position: absolute;
+    left: -25%;
+    top: -40%;
+    color: black;
+} */
+
+.header-img {
+    width: 300x;
+    height: 200px;
+    overflow: hidden;
+    /* position: absolute; */
+    /* left: 0;
+    top: 0; */
+
+}
+
+.header-img img {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+
+
+.job-info {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.job-info li {
+    width: 10%;
+}
+
+ul {
+    list-style-type: none;
+}
+
+.fab {
+    font-size: 3vw;
+}
+
+.buttons img:hover {
+    filter: invert(1);
+    cursor: pointer;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    width: auto;
+}

@@ -1,5 +1,4 @@
-# rubicks-cube
-
+# ken-ken-showdown
 
 
 ## Background

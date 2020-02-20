@@ -170,7 +170,7 @@ class Game {
                     const mathGroupLength = mathGroupDistribution[Math.floor(Math.random() * mathGroupDistribution.length)];
                     let counter = 1;
                     let adjTiles = tile.freeAdjacentTiles();
-                    this.shuffle1D(adjTiles);
+                    this.(adjTiles);
                     for (let k = 0; k < adjTiles.length; k++) {
                         if (!adjTiles[k].mathGroup) {
                             tile = adjTiles[k];

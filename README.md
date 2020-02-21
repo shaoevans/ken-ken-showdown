@@ -11,7 +11,7 @@
 
 ## Generating Random Puzzle States
 
-`
+
 ```
 createMathGroups() {
     for (let i = 0; i < this.dimensions; i++) {
@@ -51,5 +51,5 @@ createMathGroups() {
     }
 }
 ```
-`
+
 

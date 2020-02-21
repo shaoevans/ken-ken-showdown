@@ -52,4 +52,30 @@ createMathGroups() {
 }
 ```
 
+```
+selectRandomOperation(values) {
+    let prob = Math.ceil(Math.random() * 2);
+    if (values.length === 1) {
+        return null;
+    } else if (values.length === 2 && prob === 1 && values[0] !== values[1]) {
+        prob = Math.ceil(Math.random() * 2);
+        const maxIndex = values.indexOf(Math.max(...values));
+        const largerNum = values[maxIndex];
+        const smallerNum = values[(values.length - 1) - maxIndex];
+        if (prob === 1 && (largerNum % smallerNum === 0)) {
+            return "÷";
+        } else {
+            return "-";
+        }
+    } else {
+        prob = Math.ceil(Math.random() * 2);
+        if (prob === 1) {
+            return "×";
+        } else {
+            return "+";
+        }
+    }
+}
+```
+
 

@@ -100,26 +100,6 @@ findSolution() {
     return null;
 }
 
-insertIntoPriorityQueue(queue, node, visited) {
-    if (!visited[JSON.stringify(node.grid)]) {
-        if (!queue.length) {
-            queue.push(node);
-        } else {
-            let inserted = false;
-            for (let i = 0; i < queue.length; i++) {
-                if (node.fScore < queue[i].fScore) {
-                    inserted = true;
-                    queue.splice(i, 0, node);
-                    break;
-                }
-            }
-            if (!inserted) {
-                queue.push(node);
-            }
-        }
-    }
-}
-
 calculateFScore() {
     return this.calculateHScore() + this.moves.length;
 }

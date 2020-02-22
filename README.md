@@ -1,5 +1,7 @@
 # ken-ken-showdown
 
+[Link to Live Page](https://shaoevans.github.io/ken-ken-showdown/)
+
 
 ## Technologies
 

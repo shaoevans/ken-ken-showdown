@@ -64,7 +64,7 @@ class ComputerPlayer {
             current = current.parent;
         }
         let counter = 0;
-        const interval = setInterval(() => {
+        this.interval = setInterval(() => {
             const solutionSet = solutions[counter];
             if (solutionSet) {
                 const tile1 = this.game.getTile(solutionSet[0]);
@@ -72,9 +72,9 @@ class ComputerPlayer {
                 this.game.swapTiles(tile1, tile2, true);
                 counter++;
             } else {
-                clearInterval(interval);
+                clearInterval(this.interval);
             }
-        }, 500)
+        }, 3000)
     }
 
 }   

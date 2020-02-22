@@ -50,15 +50,19 @@ document.addEventListener("DOMContentLoaded", () => {
             p2Modal.style.display = "none";
         }
     }
+    let game;
+    let game2;
     const buttons = document.getElementById("buttons");
     const practiceButton = document.getElementById("practice")
     const newButton = document.getElementById("new-game-button")
     const soloButton = document.getElementById("solo-button");
     const vsButton = document.getElementById("vs-button");
+    const volumeButton = document.getElementById("volume-button")
     const domGame = document.getElementById("game")
     const domGame2 = document.getElementById("game2")
     const grid = document.getElementById("grid");
     const grid2 = document.getElementById("grid2");
+    let muted = false;
 
     const resetMainMenu = () => {
         buttons.classList.remove("hidden");
@@ -74,8 +78,38 @@ document.addEventListener("DOMContentLoaded", () => {
         newButton.classList.remove("hidden");
     }
 
+    volumeButton.addEventListener("click", () => {
+        const icon = document.createElement("i");
+        volumeButton.innerHTML = "";
+        if (!muted) {
+            icon.classList.add("fas", "fa-volume-up")
+            volumeButton.appendChild(icon);
+            muted = true;
+            sword.muted = false;
+            music.muted = false;
+            gong.muted = false;
+            buttonClick.muted = false;
+        } else {
+            icon.classList.add("fas", "fa-volume-mute")
+            volumeButton.appendChild(icon);
+            muted = false;
+            sword.muted = true;
+            music.muted = true;
+            gong.muted = true;
+            buttonClick.muted = true;
+        }
+    })
+
     newButton.addEventListener("click", () => {
         resetMainMenu();
+        music.pause();
+        music.currentTime = 0;
+        if (game) {
+            game.cleanupGame();
+        }
+        if (game2) {
+            game2.cleanupGame();
+        }
     })
 
     practiceButton.addEventListener("click", () => {
@@ -86,7 +120,7 @@ document.addEventListener("DOMContentLoaded", () => {
         domGame.classList.remove('hidden');
         newButton.classList.remove("hidden");
         buttons.classList.add("hidden");
-        const game = new Game(grid, 1, 3, modal);
+        game = new Game(grid, 1, 3, modal);
     })
 
     practiceButton.addEventListener('mouseover', () => {
@@ -117,8 +151,8 @@ document.addEventListener("DOMContentLoaded", () => {
         grid2.innerHTML = "";
         removeMainMenu();
         let games = [];
-        const game = new Game(grid, 1, 3, games);
-        const game2 = new Game(grid2, "computer", 3, games);
+        game = new Game(grid, 1, 3, games);
+        game2 = new Game(grid2, "computer", 3, games);
         games.push(game);
         games.push(game2);
     })
@@ -128,8 +162,8 @@ document.addEventListener("DOMContentLoaded", () => {
         grid.innerHTML = "";
         grid2.innerHTML = "";
         removeMainMenu();
-        const game = new Game(grid, 1, 3, modal);
-        const game2 = new Game(grid2, 2, 3, modal);
+        game = new Game(grid, 1, 3, modal);
+        game2 = new Game(grid2, 2, 3, modal);
     })
     // const game = new Game(4);
     window.game = game;

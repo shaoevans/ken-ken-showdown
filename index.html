@@ -9,7 +9,8 @@
     <link href="https://fonts.googleapis.com/css?family=Gloria+Hallelujah&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/31386d0461.js" crossorigin="anonymous"></script>
     <audio id="sword-sound" src="./assets/audio/sword-unsheathe.m4a"></audio>
-    <audio id="button-sound" src="./assets/audio/click-sound.m4a"></audio>
+    <audio id="tile-sound" src="./assets/audio/click-sound.m4a"></audio>
+    <audio id="button-sound" src="./assets/audio/button-hover.wav"></audio>
     <audio id="gong-sound" src="./assets/audio/gong-sound.mp3"></audio>
     <audio id="music" src="./assets/audio/music.mp3"></audio>
     <title>Ken Ken Showdown</title>
@@ -36,6 +37,9 @@
             <div id="grid2">
             </div>
         </div>
+        <div id="volume-button">
+            <i class="fas fa-volume-up"></i>
+        </div>
         <div id="new-game-button" class="hidden" >
             <img src="./assets/images/new-game-button.png">
         </div>
@@ -50,6 +54,30 @@
                         Each row and column must only have one of each number.
                         Tiles within bolded lines must mathemetically equal the shown result.
                         Use hotkeys or click on tile to move tiles.
+                        <div class="row-instructions">
+                            <div>
+                                <i class="fas fa-check"></i>
+                            </div>
+                            <div>
+                                <i class="fas fa-times"></i>
+                            </div>
+                            <div>
+                                <img src="./assets/images/row-good.png">
+                                <p>All unique numbers</p>
+                            </div>
+                            <div>
+                                <img src="./assets/images/row-bad.png">
+                                <p>Repeating numbers</p>
+                            </div>
+                            <div>
+                                <img src="./assets/images/box-good.png">
+                                <p>Numbers add up to 3</p>
+                            </div>
+                            <div>
+                                <img src="./assets/images/box-error.png">
+                                <p>Numbers don't add up to 3</p>
+                            </div>
+                        </div>
                     </div>
                     <div id="key-instructions">
                         <div class="player-instructions">  

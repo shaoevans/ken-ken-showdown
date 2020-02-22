@@ -322,3 +322,38 @@ img {
 		opacity: 1;
 	}
 }
+
+#volume-button {
+    position: absolute;
+    left: 1vw;
+    bottom: 0;
+    font-size: 2vw;
+    cursor: pointer;
+}
+
+.row-instructions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 0 10%;
+    border: 5px solid black;
+    border-radius: 5px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    padding: 10px;
+}
+
+.row-instructions div {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.fa-check {
+    font-size: 3vw;
+    color: green;
+}
+
+.fa-times {
+    font-size: 3vw;
+    color: darkred;
+}

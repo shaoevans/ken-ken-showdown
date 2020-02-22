@@ -19,7 +19,7 @@ class Game {
         })
         this.createMathGroups();
         this.gameOver = false;
-        this.click = document.getElementById("button-sound")
+        this.click = document.getElementById("tile-sound")
         this.zeroTile = [this.dimensions-1, this.dimensions-1];
         this.shuffle2D();
         this.player1Binds = this.player1Binds.bind(this);
@@ -28,6 +28,13 @@ class Game {
         } else {
             this.computer = new ComputerPlayer(this, this.solution)
             this.computer.solvePuzzle();
+        }
+    }
+
+    cleanupGame() {
+        this.gameOver = true;
+        if (this.computer) {
+            clearInterval(this.computer.interval);
         }
     }
 
@@ -119,6 +126,7 @@ class Game {
     }
 
     swapTiles(tileA, tileB, detecting = false ) {
+        console.log(this.gameOver);
         if (!this.gameOver) {
             const temp = tileA.value;
             tileA.value = tileB.value;

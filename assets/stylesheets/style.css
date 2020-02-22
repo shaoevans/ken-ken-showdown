@@ -2,16 +2,20 @@
 body {
     font-family: "Gloria Hallelujah";
     border: 16px solid black;
-    padding: 10px;
+    padding: 0;
     margin: 0;
 }
 
 #body {
     background-image: url("../images/yin-yang.jpg");
-    height: 900px;
+    background-repeat: no-repeat;
+    background-position: center top;
+    background-size: 48.5%;
+    height: 700px;
     padding-top: 6vw;
     display: flex;
     justify-content: space-around;
+    position: relative;
 }
 
 h1 {
@@ -24,9 +28,26 @@ h1 {
 
 header {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     position: relative;
     /* background-color: rgba(0, 0, 0, 0.3); */
+}
+
+
+footer {
+    display: flex;
+    justify-content: space-around;
+    background-color: black;
+    padding: 1em;
+}
+
+footer i {
+    font-size: 4vw;
+    color: white;
+}
+
+footer i:hover {
+    color: gray;
 }
 
 #sidenav {
@@ -79,20 +100,36 @@ header {
 
 #game {
     width: 25%;
-    height: 42%;
-    /* margin: 0 auto; */
+    height: max-content;
     position: relative;
     border: 15px solid #C7A663;
     border-radius: 10px;
+    box-shadow: 0 4px 10px 0 rgba(0,0,0,0.225);
+
 }
 
+#game .player-info {
+    background-color: #C7A663;
+}
+
+.player-info {
+    text-align: center;
+    font-weight: bold;
+    font-size: 2.5vw;
+}
 #game2 {
     width: 25%;
-    height: 42%;
+    height: max-content;
     /* margin: 0 auto; */
     position: relative;
     border: 15px solid #F7DD9B;
     border-radius: 10px;
+    box-shadow: 0 4px 10px 0 rgba(0,0,0,0.225);
+
+}
+
+#game2 .player-info {
+    background-color: #F7DD9B;
 }
 
 #grid .zero {
@@ -142,25 +179,47 @@ header {
 
 
 
-.job-info {
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-}
 
-.job-info li {
-    width: 10%;
-}
+
 
 ul {
     list-style-type: none;
+}
+
+h2 {
+    text-align: center;
 }
 
 .fab {
     font-size: 3vw;
 }
 
-.buttons img:hover {
+#new-game-button {
+    position: absolute;
+    right: 20px; 
+    bottom: 20px;
+    width: 13vw;
+}
+
+#buttons {
+    /* background-color: white; */
+    padding: 0;
+    position: absolute;
+    right: 30px;
+    width: 20%;
+}
+
+
+
+#buttons img:hover {
+    filter: invert(1);
+    cursor: pointer;
+}
+
+
+
+
+#new-game-button:hover {
     filter: invert(1);
     cursor: pointer;
 }
@@ -169,4 +228,97 @@ img {
     max-width: 100%;
     height: auto;
     width: auto;
+}
+
+
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  }
+  
+  /* Modal Content/Box */
+  .modal-content {
+    font-family: sans-serif;
+    border-radius: 10px;
+    background-color: #fefefe;
+    margin: 15% auto; 
+    padding: 40px;
+    border: 1px solid #888;
+    width: 50%; /* Could be more or less, depending on screen size */
+    position: relative;
+    font-size: 2vw;
+    box-shadow: 0 4px 10px 0 rgba(0,0,0,0.225);
+  }
+
+  .modal-content p {
+      margin: 0;
+  }
+  
+  /* The Close Button */
+  .close {
+    color: black;
+    position: absolute;
+    right: 10px;
+    top: 0;
+    font-size: 40px;
+    font-weight: bold;
+    line-height: 40px;
+  }
+  
+  .close:hover,
+  .close:focus {
+    color: darkgray;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  #key-instructions {
+      margin-top: 20px;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+  }
+
+.player-instructions{
+    border: 5px solid black;
+    border-radius: 5px;
+    flex-wrap: wrap;
+    padding: 10px;
+    height: max-content;
+}
+
+.player-instructions div {
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+
+.hidden {
+    display: none;
+}
+
+
+.victory {
+	opacity: 1;
+	animation-name: fadeInOpacity;
+	animation-iteration-count: 1;
+	animation-timing-function: ease-in;
+	animation-duration: 1s;
+}
+
+@keyframes fadeInOpacity {
+	0% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
 }

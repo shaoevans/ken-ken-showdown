@@ -1,8 +1,10 @@
 import Tile from "./tile";
+import ComputerPlayer from "./computer_player";
 
 class Game {
-    constructor(DOMGrid, player, dimensions = 5) {
+    constructor(DOMGrid, player, dimensions, games) {
         this.dimensions = dimensions;
+        this.games = games;
         this.DOMGrid = DOMGrid;
         this.player = player;
         this.DOMGrid.style.setProperty('grid-template-columns', `repeat(${this.dimensions}, 1fr)`)
@@ -17,49 +19,21 @@ class Game {
         })
         this.createMathGroups();
         this.gameOver = false;
-        this.shuffle2D();
         this.zeroTile = [this.dimensions-1, this.dimensions-1];
-        this.bindKeys();
+        this.shuffle2D();
+        this.player1Binds = this.player1Binds.bind(this);
+        if (this.player === 1 || this.player === 2) {
+            this.bindKeys();
+        } else {
+            this.computer = new ComputerPlayer(this, this.solution)
+            this.computer.solvePuzzle();
+        }
     }
 
     bindKeys() {
         if (this.player === 1) {
-            window.addEventListener("keydown", (e) => {
-                if (!this.gameOver) {
-                    const zeroTile = this.grid[this.zeroTile[0]][this.zeroTile[1]];
-                    if (e.keyCode === 65) {
-                        e.preventDefault();
-                        //left
-                        const zeroTileRight = zeroTile.getAdjRightTile();
-                        if (zeroTileRight) {
-                            this.swapTiles(zeroTile, zeroTileRight);
-                        }
-                    } else if (e.keyCode === 87) {
-                        e.preventDefault();
-                        //up
-                        const zeroTileBottom = zeroTile.getAdjBottomTile();
-                        if (zeroTileBottom) {
-                            this.swapTiles(zeroTile, zeroTileBottom);
-                        }
-                    } else if (e.keyCode === 68) {
-                        e.preventDefault();
-                        //right
-                        const zeroTileLeft = zeroTile.getAdjLeftTile();
-                        if (zeroTileLeft) {
-                            this.swapTiles(zeroTile, zeroTileLeft);
-                        }
-    
-                    } else if (e.keyCode === 83) {
-                        e.preventDefault();
-                        //down
-                        const zeroTileTop = zeroTile.getAdjTopTile();
-                        if (zeroTileTop) {
-                            this.swapTiles(zeroTile, zeroTileTop);
-                        }
-                    }
-                }
-            })
-        } else {
+            window.addEventListener("keydown", this.player1Binds);
+        } else if (this.player === 2) {
             window.addEventListener("keydown", (e) => {
                 if (!this.gameOver) {
                     const zeroTile = this.grid[this.zeroTile[0]][this.zeroTile[1]];
@@ -68,21 +42,21 @@ class Game {
     
                         const zeroTileRight = zeroTile.getAdjRightTile();
                         if (zeroTileRight) {
-                            this.swapTiles(zeroTile, zeroTileRight);
+                            this.swapTiles(zeroTile, zeroTileRight, true);
                         }
                     } else if (e.keyCode === 38) {
                         e.preventDefault();
                         //up
                         const zeroTileBottom = zeroTile.getAdjBottomTile();
                         if (zeroTileBottom) {
-                            this.swapTiles(zeroTile, zeroTileBottom);
+                            this.swapTiles(zeroTile, zeroTileBottom, true);
                         }
                     } else if (e.keyCode === 39) {
                         e.preventDefault();
                         //right
                         const zeroTileLeft = zeroTile.getAdjLeftTile();
                         if (zeroTileLeft) {
-                            this.swapTiles(zeroTile, zeroTileLeft);
+                            this.swapTiles(zeroTile, zeroTileLeft, true);
                         }
     
                     } else if (e.keyCode === 40) {
@@ -90,24 +64,78 @@ class Game {
                         //down
                         const zeroTileTop = zeroTile.getAdjTopTile();
                         if (zeroTileTop) {
-                            this.swapTiles(zeroTile, zeroTileTop);
+                            this.swapTiles(zeroTile, zeroTileTop, true);
                         }
                     }
                 }
             })
+        } 
+    }
+
+    player1Binds(e) {
+        if (!this.gameOver) {
+            const zeroTile = this.grid[this.zeroTile[0]][this.zeroTile[1]];
+            if (e.keyCode === 65) {
+                e.preventDefault();
+                //left
+                const zeroTileRight = zeroTile.getAdjRightTile();
+                if (zeroTileRight) {
+                    this.swapTiles(zeroTile, zeroTileRight, true);
+                }
+            } else if (e.keyCode === 87) {
+                e.preventDefault();
+                //up
+                const zeroTileBottom = zeroTile.getAdjBottomTile();
+                if (zeroTileBottom) {
+                    this.swapTiles(zeroTile, zeroTileBottom, true);
+                }
+            } else if (e.keyCode === 68) {
+                e.preventDefault();
+                //right
+                const zeroTileLeft = zeroTile.getAdjLeftTile();
+                if (zeroTileLeft) {
+                    this.swapTiles(zeroTile, zeroTileLeft, true);
+                }
+
+            } else if (e.keyCode === 83) {
+                e.preventDefault();
+                //down
+                const zeroTileTop = zeroTile.getAdjTopTile();
+                if (zeroTileTop) {
+                    this.swapTiles(zeroTile, zeroTileTop, true);
+                }
+            }
         }
     }
 
-    gameOver() {
-        this.gameOver = true;
+
+    makeRandoMove() {
+        this.zeroTile.getAdjacents();
     }
 
-    swapTiles(tileA, tileB) {
-        const temp = tileA.value;
-        tileA.value = tileB.value;
-        tileB.value = temp;
-        tileA.rerenderTile();
-        tileB.rerenderTile();
+    getTile(pos) {
+        return this.grid[pos[0]][pos[1]];
+    }
+
+    swapTiles(tileA, tileB, detecting = false ) {
+        if (!this.gameOver) {
+            const temp = tileA.value;
+            tileA.value = tileB.value;
+            tileB.value = temp;
+            tileA.rerenderTile();
+            tileB.rerenderTile();
+            if (detecting && this.isSolved()) {
+                this.games.forEach(game => game.gameOver = true);
+                window.removeEventListener("keydown", this.player1Binds);
+                if (this.player === 1) {
+                    const modal = document.getElementById(`player-1-win`);
+                    modal.style.display = "block";
+                } else {
+                    const modal = document.getElementById("player-2-win");
+                    modal.style.display = "block";
+                }
+            }
+        }
     }
 
     createInitialBoard() {
@@ -170,7 +198,7 @@ class Game {
                     const mathGroupLength = mathGroupDistribution[Math.floor(Math.random() * mathGroupDistribution.length)];
                     let counter = 1;
                     let adjTiles = tile.freeAdjacentTiles();
-                    this.(adjTiles);
+                    this.shuffle1D(adjTiles);
                     for (let k = 0; k < adjTiles.length; k++) {
                         if (!adjTiles[k].mathGroup) {
                             tile = adjTiles[k];
@@ -227,15 +255,21 @@ class Game {
     // fix this shit
 
     shuffle2D() {
-        for (let i = this.dimensions - 1; i > 0; i--) {
-            for (let j = this.dimensions - 1; j > 0; j--) {
-                const x = Math.floor(Math.random() * (i + 1));
-                const y = Math.floor(Math.random() * (j + 1));
-                if (this.grid[i][j] !== this.grid[x][y] && this.grid[i][j].value !== 0 && this.grid[x][y] !== 0) {
-                    this.swapTiles(this.grid[x][y], this.grid[i][j])
-                }
-            }
+        for (let i = 0; i < 100; i++) {
+            const zeroTile = this.grid[this.zeroTile[0]][this.zeroTile[1]];
+            const neighbors = zeroTile.adjacentTiles()
+            const randNeighbor = neighbors[Math.floor(Math.random() * neighbors.length)];
+            this.swapTiles(zeroTile, randNeighbor);
         }
+        // for (let i = this.dimensions - 1; i > 0; i--) {
+        //     for (let j = this.dimensions - 1; j > 0; j--) {
+        //         const x = Math.floor(Math.random() * (i + 1));
+        //         const y = Math.floor(Math.random() * (j + 1));
+        //         if (this.grid[i][j] !== this.grid[x][y] && this.grid[i][j].value !== 0 && this.grid[x][y] !== 0) {
+        //             this.swapTiles(this.grid[x][y], this.grid[i][j])
+        //         }
+        //     }
+        // }
     }
 
     selectRandomOperation(values) {
@@ -283,6 +317,12 @@ class Game {
             }
         }
         return total;
+    }
+
+    numberRepresentationOfGrid() {
+        return this.grid.map(row => {
+            return row.map(tile => tile.value)
+        });
     }
 }
 

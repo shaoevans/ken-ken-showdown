@@ -67,10 +67,7 @@ class Tile {
     handleClick() {
         const adjBlank = this.blankAdjacentTile();
         if (adjBlank && this.value !== 0 && !this.game.gameOver) {
-            this.game.swapTiles(this, adjBlank);
-            if (this.game.isSolved()) {
-                this.game.gameOver();
-            }
+            this.game.swapTiles(this, adjBlank, true);
         }
     }
 

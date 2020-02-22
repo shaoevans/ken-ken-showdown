@@ -13,44 +13,81 @@
 </head>
 <body>
     <header>
-        <div class="header-img">
-            <!-- <img src="./assets/images/brush-border2.png" > -->
-            <ul className="job-info">
-                <li>
-                    <i class="fab fa-github"></i>
-                </li>
-                <li>
-                    <i class="fab fa-linkedin-in"></i>
-                </li>
-                <li>
-                    <i class="fab fa-angellist"></i>
-                </li>
-            </ul>
-        </div>
         <img src="https://fontmeme.com/permalink/200130/76e9fc5809979417edd57a42944ebadf.png" alt="brush-fonts" border="0">
-        <ul class="buttons">
+
+    </header>
+    <section id="body">
+        <ul id="buttons">
+            <li><img id="practice" src="./assets/images/practice-button.png"></li>
             <li><img id="solo-button" src="./assets/images/solo-button.png"></li>
             <li><img id="vs-button" src="./assets/images/versus-button.png"></li>
-            <!-- <li><img src="./assets/images/3x3-button.png"></li>
-            <li><img src="./assets/images/4x4-button.png"></li>
-            <li><img src="./assets/images/computer-button.png"></li>
-            <li><img src="./assets/images/player-button.png"></li> -->
+            <li><img id="how-to-play" src="./assets/images/how-to-play-button.png"></li>
         </ul>
-    </header>
-    <!-- <div id="sidenav">
-        <div>Evans Shao</div>
-        <div>Github</div>
-        <div>LinkedIn</div>
-    </div> -->
-    <section id="body">
-        <div id="game">
+        <div id="game" class="hidden">
+            <div class="player-info">Player 1</div>
             <div id="grid">
             </div>
         </div>
-        <div id="game2">
+        <div id="game2" class="hidden">
+            <div class="player-info">Player 2</div>
             <div id="grid2">
             </div>
         </div>
+        <div id="new-game-button" class="hidden" >
+            <img src="./assets/images/new-game-button.png">
+        </div>
+        <div id="myModal" class="modal">
+            <!-- Modal content -->
+            <div class="modal-content"> 
+                <span class="close">&times;</span>
+                <div>
+                    <div>    
+                        <h2>Instructions</h2>
+                        Welcome to Ken Ken Showdown, a competitive math puzzle game!
+                        Each row and column must only have one of each number.
+                        Tiles within bolded lines must mathemetically equal the shown result.
+                        Use hotkeys or click on tile to move tiles.
+                    </div>
+                    <div id="key-instructions">
+                        <div class="player-instructions">  
+                            <div>Player 1</div>
+                            <img src="./assets/images/wasd.gif">
+                        </div>
+                        <div class="player-instructions">  
+                            <img src="./assets/images/ken-ken-guide.gif">
+                        </div>
+                        <div class="player-instructions">
+                            <div>Player 2</div>
+                            <img src="./assets/images/arrow-keys.gif">
+                        </div>
+                    </div>
+                    <div>
+                        <h2>Modes</h2>
+                        <p><strong>Practice:</strong> Practice solving Ken-Ken Puzzles</p>
+                        <p><strong>Solo:</strong> Race against a computer player!</p>
+                        <p><strong>Versus:</strong> Race against your friend!</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div id="player-1-win" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <img class="victory" src="./assets/images/player-1-win.jpeg">
+            </div>
+        </div>
+        <div id="player-2-win" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <img class="victory" src="./assets/images/player-2-win.jpeg">   
+            </div>
+        </div>
     </section>
+    <footer>
+        <a href="https://github.com/shaoevans"><i class="fab fa-github"></i></a>
+        <a href="https://www.linkedin.com/in/evans-shao-b76201139/"><i class="fab fa-linkedin-in"></i></a>
+        <a href="https://angel.co/evans-shao"><i class="fab fa-angellist"></i></a>
+    </footer>
 </body>
 </html>

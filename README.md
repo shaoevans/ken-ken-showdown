@@ -2,6 +2,7 @@
 
 [Link to Live Page](https://shaoevans.github.io/ken-ken-showdown/)
 
+![Main Page](demos/ken-ken-main.png)
 
 ## Technologies
 
@@ -90,6 +91,8 @@ createMathGroups() {
 
 
 ## A* Algorithm to Solve Puzzle
+
+![Ken Ken Computer AI](demos/ken-ken-computer.gif)
 
 To build a self-solving computer player, I first created a `computer player` class and a `node` class. The tree structure of my nodes would be a quarternary tree, since nodes at most can have 4 children representing each direction a tile can be moved. Each tile was evaluated for its f score, which is just a combination of the nodes h-score and g-score. The h-score was calculated via a simple iteration, checking how many tiles distance away the node is from the solved solution matrix. The g-score was also simple to calculate--simply the distance from the start node traveled to get to the current node, or how many moves have been made.
 

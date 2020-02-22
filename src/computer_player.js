@@ -74,7 +74,7 @@ class ComputerPlayer {
             } else {
                 clearInterval(interval);
             }
-        }, 3000)
+        }, 500)
     }
 
 }   

@@ -19,6 +19,7 @@ class Game {
         })
         this.createMathGroups();
         this.gameOver = false;
+        this.click = document.getElementById("button-sound")
         this.zeroTile = [this.dimensions-1, this.dimensions-1];
         this.shuffle2D();
         this.player1Binds = this.player1Binds.bind(this);
@@ -122,11 +123,13 @@ class Game {
             const temp = tileA.value;
             tileA.value = tileB.value;
             tileB.value = temp;
+            this.click.play();
             tileA.rerenderTile();
             tileB.rerenderTile();
             if (detecting && this.isSolved()) {
                 this.games.forEach(game => game.gameOver = true);
                 window.removeEventListener("keydown", this.player1Binds);
+                document.getElementById("gong-sound").play();
                 if (this.player === 1) {
                     const modal = document.getElementById(`player-1-win`);
                     modal.style.display = "block";

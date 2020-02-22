@@ -2,6 +2,13 @@
 import Game from "./game";
 
 document.addEventListener("DOMContentLoaded", () => {
+    const sword = document.getElementById("sword-sound");
+    sword.volume = 0.05;
+    const buttonClick = document.getElementById("button-sound");
+    const music = document.getElementById("music");
+    const gong = document.getElementById("gong-sound");
+    music.volume = 0.05;
+    // sound.src = "./../assets/audio/sword-unsheathe.mp3";
     const modal = document.getElementById("myModal");
     const p1Modal = document.getElementById("player-1-win");
     const p2Modal = document.getElementById("player-2-win");
@@ -72,6 +79,8 @@ document.addEventListener("DOMContentLoaded", () => {
     })
 
     practiceButton.addEventListener("click", () => {
+        sword.play();
+        music.play();
         grid.innerHTML = "";
         grid2.innerHTML = "";
         domGame.classList.remove('hidden');
@@ -80,7 +89,30 @@ document.addEventListener("DOMContentLoaded", () => {
         const game = new Game(grid, 1, 3, modal);
     })
 
+    practiceButton.addEventListener('mouseover', () => {
+        buttonClick.play();
+    })
+
+    newButton.addEventListener('mouseover', () => {
+        buttonClick.play();
+    })
+
+    soloButton.addEventListener('mouseover', () => {
+        buttonClick.play();
+    })
+
+    vsButton.addEventListener('mouseover', () => {
+        buttonClick.play();
+    })
+
+    btn.addEventListener('mouseover', () => {
+        buttonClick.play();
+    })
+
     soloButton.addEventListener("click", () => {
+        sword.play();
+        music.play();
+
         grid.innerHTML = "";
         grid2.innerHTML = "";
         removeMainMenu();
@@ -91,6 +123,8 @@ document.addEventListener("DOMContentLoaded", () => {
         games.push(game2);
     })
     vsButton.addEventListener("click", () => {
+        sword.play();
+        music.play();
         grid.innerHTML = "";
         grid2.innerHTML = "";
         removeMainMenu();

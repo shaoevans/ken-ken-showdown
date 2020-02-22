@@ -110,7 +110,7 @@ calculateHScore() {
     return hScore
 }
 ```
- A* relies on a priority queue in which nodes with the minimum f-score get evaluated first. As we traverse the quarternary tree and generate each children, each child is inserted into a priority queue based on its f-score. So while our queue is not empty, we simply shift off the first element, check if it is solved, otherwise evaluate its children.
+ A* relies on a priority queue in which nodes with the minimum f-score get evaluated first. As we traverse the quarternary tree and generate each children, each child is inserted into a priority queue based on its f-score. So while our queue is not empty, we simply shift off the first element, check if it is solved, otherwise evaluate its children. Note that only children representing a board state that was never seen before are inserted into the priority queue, which is what the visited object is for.
  
 
 ```

@@ -80,4 +80,61 @@ selectRandomOperation(values) {
 }
 ```
 
+## A* Algorithm to Solve Puzzle
+
+```
+findSolution() {
+    const queue = [this.node];
+    const visited = {};
+    visited[JSON.stringify(this.node.grid)] = true;
+    while (queue.length) {
+        const node = queue.shift();
+        visited[JSON.stringify(node.grid)] = true;
+        if (node.isSolved()) {
+            return node;
+        }
+        node.createChildren().forEach(child => {
+            this.insertIntoPriorityQueue(queue, child, visited);
+        })
+    }
+    return null;
+}
+
+insertIntoPriorityQueue(queue, node, visited) {
+    if (!visited[JSON.stringify(node.grid)]) {
+        if (!queue.length) {
+            queue.push(node);
+        } else {
+            let inserted = false;
+            for (let i = 0; i < queue.length; i++) {
+                if (node.fScore < queue[i].fScore) {
+                    inserted = true;
+                    queue.splice(i, 0, node);
+                    break;
+                }
+            }
+            if (!inserted) {
+                queue.push(node);
+            }
+        }
+    }
+}
+
+calculateFScore() {
+    return this.calculateHScore() + this.moves.length;
+}
+
+calculateHScore() {
+    let hScore = 0;
+    for (let i = 0; i < this.grid.length; i++) {
+        for (let j = 0; j < this.grid.length; j++) {
+            if (this.grid[i][j] !== this.solution[i][j]) {
+                hScore++;
+            }
+        }
+    }
+    return hScore
+}
+```
+
 

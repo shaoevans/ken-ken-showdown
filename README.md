@@ -133,4 +133,5 @@ findSolution() {
 
 ```
 
+Once the solution node is found, simply traverse back up the tree using the parent of each node and regenerate the set of moves used to arrive at the solution node!
 

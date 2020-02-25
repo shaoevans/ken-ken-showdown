@@ -15,6 +15,7 @@ class Game {
         this.grid = this.grid.map((row, i) => {
             return row.map((num, j) => {
                 return new Tile(i, j, num, this, this.DOMGrid)
+                
             })
         })
         this.createMathGroups();
